@@ -34,7 +34,7 @@ Data Import
 
 					        </div>
 					        <div class='box-content box-double-padding'>
-					            <form class='form' style='margin-bottom: 0;'>
+					            {{ Form::open(array('url' => 'save', 'class' => 'form')) }}
 									<fieldset>
 					                    <div class='span3 box'>
 					                        <div class='lead'>
@@ -63,94 +63,36 @@ Data Import
 										                            </th>
 										                            <th width="20%">
 										                                Student ID Column
-										                            </th>										                            
+										                            </th>
 										                        </tr>
 										                        </thead>
 										                        <tbody>
-										                        <tr>
-										                            <td>Student Name</td>
-										                            <td><input class='input-block-level' id='inputText2' placeholder='Student Name' type='text'></td>
-										                            <td>
-										                                 <div class='switch' data-off-label='<i class="icon-remove"></i>' data-on-label='<i class="icon-ok"></i>' data-on='success'>
-												                            <input checked='checked' type='checkbox'>
-												                        </div>
-										                            </td>
-										                            <td>
-												                        <label class='radio'>
-												                            <input type='radio' value=''>
-												                            Yes
-												                        </label>
-										                            </td>
-										                        </tr>
-										                        <tr>
-										                            <td>Student ID</td>
-										                            <td><input class='input-block-level' id='inputText2' placeholder='Student ID' type='text'></td>
-										                            <td>
-										                                 <div class='switch' data-off-label='<i class="icon-remove"></i>' data-on-label='<i class="icon-ok"></i>' data-on='success'>
-												                            <input checked='checked' type='checkbox'>
-												                        </div>
-										                            </td>
-										                            <td>
-												                        <label class='radio'>
-												                            <input type='radio' value='Yes' selected>
-												                            Yes
-												                        </label>
-										                            </td>
-										                        </tr>
-										                        <tr>
-										                            <td>Math Score</td>
-										                            <td><input class='input-block-level' id='inputText2' placeholder='Math Score' type='text'></td>
-										                            <td>
-										                               <div class='switch' data-off-label='<i class="icon-remove"></i>' data-on-label='<i class="icon-ok"></i>' data-on='success'>
-												                            <input checked='checked' type='checkbox'>
-												                        </div>
-										                            </td>
-										                            <td>
-												                        <label class='radio'>
-												                            <input type='radio' value=''>
-												                            Yes
-												                        </label>
-										                            </td>
-										                        </tr>
-										                        <tr>
-										                            <td>English Score</td>
-										                            <td><input class='input-block-level' id='inputText2' placeholder='English Score' type='text'></td>
-										                            <td>
-										                            	<div class='switch' data-off-label='<i class="icon-remove"></i>' data-on-label='<i class="icon-ok"></i>' data-on='success'>
-												                            <input checked='checked' type='checkbox'>
-												                        </div>
-										                            </td>
-										                            <td>
-												                        <label class='radio'>
-												                            <input type='radio' value=''>
-												                            Yes
-												                        </label>
-										                            </td>
-										                        </tr>
-										                        <tr>
-										                            <td>History Score</td>
-										                            <td><input class='input-block-level' id='inputText2' placeholder='History Score' type='text'></td>
-										                            <td>
-										                            	<div class='switch' data-off-label='<i class="icon-remove"></i>' data-on-label='<i class="icon-ok"></i>' data-on='success'>
-												                            <input checked='checked' type='checkbox'>
-												                        </div>
-										                            </td>
-										                            <td>
-												                        <label class='radio'>
-												                            <input type='radio' value=''>
-												                            Yes
-												                        </label>
-										                            </td>
-										                        </tr>
+										                        @foreach($firstRow as $cell)
+										                                <tr>
+												                            <td class="{{ $cell->getCoordinate() }}">{{ $cell->getValue() }}</td>
+												                            <td><input name="{{ $cell->getCoordinate() }}" class='input-block-level' id='inputText2' value='{{ $cell->getValue() }}' type='text'></td>
+												                            <td>
+												                                 <div class='switch' data-off-label='<i class="icon-remove"></i>' data-on-label='<i class="icon-ok"></i>' data-on='success'>
+														                            <input name="included[]" class="included" checked='checked' type='checkbox' value="{{ $cell->getColumn() }}">
+														                        </div>
+												                            </td>
+												                            <td>
+														                        <label class='radio'>
+														                            <input name="studentID" type='radio' value='{{ $cell->getCoordinate() }}' />
+														                            Yes
+														                        </label>
+												                            </td>
+												                        </tr>
+										                        @endforeach
 										                        </tbody>
 										                    </table>
 										                </div>
 										            </div>
 										        </div>
 										    </div>
-										</div>				            
+										</div>
 										<!-- End Table  -->
-										
+
 										</div>
 									</fieldset>
 									<hr class='hr-normal'>
@@ -161,55 +103,22 @@ Data Import
 										        <div class='box-content box-no-padding'>
 										            <div class='responsive-table'>
 										                <div class='scrollable-area'>
-										                    <table class='table' style='margin-bottom:0;'>
+										                    <table class='table preview' style='margin-bottom:0;'>
 										                        <thead>
 										                        <tr>
-										                            <th width="20%">
-										                                Student Name
-										                            </th>
-										                            <th width="20%">
-										                                Student ID
-										                            </th>
-										                            <th width="20%">
-										                                Math Score
-										                            </th>
-										                            <th width="20%">
-										                                English Score
-										                            </th>	
-										                            <th width="20%">
-										                                History Score
-										                            </th>											                            									                            
+										                            @foreach($firstRow as $key => $cell)
+										                                <th data-id="{{$key}}" class="{{ $cell->getCoordinate() }}">{{ $cell->getValue() }}</th>
+										                            @endforeach
 										                        </tr>
 										                        </thead>
 										                        <tbody>
-										                        <tr>
-										                            <td>John Doe</td>
-										                            <td>123123</td>
-										                            <td>59</td>
-										                            <td>89</td>
-										                            <td>75</td>
-										                        </tr>
-																<tr>
-										                            <td>Jimmy Brown</td>
-										                            <td>564564</td>
-										                            <td>78</td>
-										                            <td>90</td>
-										                            <td>67</td>
-										                        </tr>
-																<tr>
-										                            <td>Carlos Santos</td>
-										                            <td>0234349</td>
-										                            <td>78</td>
-										                            <td>89</td>
-										                            <td>90</td>
-										                        </tr>										                        
-																<tr>
-										                            <td>Kendra Donalds</td>
-										                            <td>56430</td>
-										                            <td>69</td>
-										                            <td>98</td>
-										                            <td>90</td>
-										                        </tr>
+                                                                    @foreach($sampleRows as $row)
+                                                                        <tr>
+                                                                            @foreach($row as $key => $r)
+                                                                                <td data-id="{{ $key }}">{{ $r }}</td>
+                                                                            @endforeach
+                                                                        </tr>
+                                                                    @endforeach
 										                        </tbody>
 										                    </table>
 										                </div>
@@ -222,20 +131,23 @@ Data Import
 					                <div class='form-actions' style='margin-bottom: 0;'>
 					                    <div class='text-right'>
 					                        <div class='btn btn-large'>
-					                            <i class='icon-chevron-left'></i> Previous 
+					                            <i class='icon-chevron-left'></i> Previous
 					                        </div>
-					                        <div class='btn btn-primary btn-large'>
-					                            Next <i class='icon-chevron-right'></i>
-					                        </div>
+                                            <a href="{{URL::to('/')}}" class="submit">
+                                                <div class='btn btn-primary btn-large'>
+                                                    Next <i class='icon-chevron-right'></i>
+                                                </div>
+                                            </a>
+
 					                    </div>
 					                </div>
-					            </form>
+					            {{ Form::close()}}
 					        </div>
 					    </div>
 
 	            </div>
 	        </div>
-		</div>  
+		</div>
     </div>
 
 
@@ -245,8 +157,20 @@ Data Import
 @stop
 @section('scripts')
 <script type="text/javascript">
-$(document).ready(function() { 
+$(document).ready(function() {
+    $('input.included').change(function (e) {
+        //hide th and column beneath it if selected
+        var el = $(this).val();
+        $('table.preview th.'+el).toggle();
+        var id = $('table.preview th.'+el).attr("data-id");
+        $('table.preview td[data-id="'+id+'"]').toggle();
+    });
 
-}); 
+    //submit form
+    $('a.submit').click(function (el) {
+        el.preventDefault();
+        $( "form" ).submit();
+    });
+});
 </script>
 @stop

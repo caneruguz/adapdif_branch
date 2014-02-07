@@ -1,0 +1,10 @@
+/vendor
+composer.phar
+composer.lock
+.DS_Store
+storage/views/*
+bootstrap/compiled.php
+app/tests/_log/*
+node_modules/*
+app/storage/gallery/*
+/public/uploads

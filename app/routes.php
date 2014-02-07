@@ -11,10 +11,15 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('data1');
-});
+Route::get('/', 'DataImportContoller@index');
+Route::post('upload', 'DataImportContoller@store');
+Route::post('save', 'DataImportContoller@save');
+Route::get('upload2', 'DataImportContoller@store2');
+
+// Route::get('/', function()
+// {
+// 	return View::make('data1');
+// });
 
 Route::get('data2', function(){	return View::make('data2'); });
 Route::get('data3', function(){	return View::make('data3'); });
