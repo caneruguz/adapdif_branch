@@ -24,3 +24,4 @@ Route::get('upload2', 'DataImportContoller@store2');
 Route::get('data2', function(){	return View::make('data2'); });
 Route::get('data3', function(){	return View::make('data3'); });
 Route::get('pd', function(){	return View::make('pd'); });
+Route::get('dataview', function(){	return View::make('view'); });
