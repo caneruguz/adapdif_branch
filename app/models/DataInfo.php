@@ -10,6 +10,6 @@ class DataInfo extends Eloquent {
 
     public function dataColumn()
     {
-        return $this->belongsTo('DataColumns', 'dataColumnID');
+        return $this->belongsTo('DataColumns', 'columnDataID');
     }
 }

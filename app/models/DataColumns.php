@@ -6,7 +6,7 @@ class DataColumns extends Eloquent {
 	public static $rules = array();
 
     protected $table = 'dataColumns';
-    protected $primaryKey = 'dataColumnID';
+    protected $primaryKey = 'columnID';
 
     public function dataImport()
     {
@@ -15,6 +15,6 @@ class DataColumns extends Eloquent {
 
     public function dataInfo()
     {
-        return $this->hasOne('DataInfo', 'dataColumnID');
+        return $this->hasMany('DataInfo', 'dataColumnID', 'columnID');
     }
 }

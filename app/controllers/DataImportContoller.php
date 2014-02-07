@@ -60,4 +60,11 @@ class DataImportContoller extends BaseController {
 		return Redirect::to('data3');
 	}
 
+	public function dataView($id)
+	{
+		$data = DataImport::with('dataColumns', 'dataColumns.dataInfo')->find($id);
+
+		return View::make('view')->withData($data);
+	}
+
 }

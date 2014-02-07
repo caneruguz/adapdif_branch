@@ -30,54 +30,35 @@ Data Set
 							            <div class='responsive-table'>
 							                <div class='scrollable-area'>
 							                    <table class='data-table-column-filter table table-bordered table-striped dataTable' style='margin-bottom:0;'>
+							                        <?php $rows = array(); $counter = 0; $counter2 = 0; ?>
 							                        <thead>
 							                        <tr>
-							                            <th width="20%">
-							                                Student Name
-							                            </th>
-							                            <th width="20%">
-							                                Student ID
-							                            </th>
-							                            <th width="20%">
-							                                Math Score
-							                            </th>
-							                            <th width="20%">
-							                                English Score
-							                            </th>	
-							                            <th width="20%">
-							                                History Score
-							                            </th>											                            									                            
+								                        @foreach($data->dataColumns as $column)
+									                            <td>{{ $column->columnName }}</td>
+								                        @endforeach
 							                        </tr>
 							                        </thead>
 							                        <tbody>
-							                        <tr>
-							                            <td>John Doe</td>
-							                            <td>123123</td>
-							                            <td>59</td>
-							                            <td>89</td>
-							                            <td>75</td>
-							                        </tr>
-													<tr>
-							                            <td>Jimmy Brown</td>
-							                            <td>564564</td>
-							                            <td>78</td>
-							                            <td>90</td>
-							                            <td>67</td>
-							                        </tr>
-													<tr>
-							                            <td>Carlos Santos</td>
-							                            <td>0234349</td>
-							                            <td>78</td>
-							                            <td>89</td>
-							                            <td>90</td>
-							                        </tr>										                        
-													<tr>
-							                            <td>Kendra Donalds</td>
-							                            <td>56430</td>
-							                            <td>69</td>
-							                            <td>98</td>
-							                            <td>90</td>
-							                        </tr>
+														@foreach($data->dataColumns as $column)
+
+									                            @foreach($column->dataInfo as $data)
+									                            	<?php $rows[$counter][$counter2] = $data->dataContent;
+									                            		$counter++;
+									                            	 ?>
+
+										                        @endforeach
+																<?php $counter = 0; $counter2++; ?>
+								                        @endforeach
+								                        <?php //var_dump($rows) ?>
+
+														@foreach($rows as $row)
+															<tr>
+																@foreach($row as $column)
+																<td>{{ $column }}</td>
+																@endforeach
+															</tr>
+														@endforeach
+
 							                        </tbody>
 							                    </table>
 							                </div>
@@ -87,11 +68,11 @@ Data Set
 							</div
 										<!-- End of Preview Table -->
 					                </fieldset>
-					               
-					           
+
+
 					        </div>
 	        </div>
-		</div>  
+		</div>
     </div>
 
 
@@ -101,8 +82,8 @@ Data Set
 @stop
 @section('scripts')
 <script type="text/javascript">
-$(document).ready(function() { 
+$(document).ready(function() {
 
-}); 
+});
 </script>
 @stop
