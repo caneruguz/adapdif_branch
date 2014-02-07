@@ -34,6 +34,11 @@ Data Import
 
 					        </div>
 					        <div class='box-content box-double-padding'>
+                                @if (Session::has('errors'))
+                                    @foreach($errors->get('studentID') as $message)
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @endforeach
+                                @endif
 					            {{ Form::open(array('url' => 'save', 'class' => 'form')) }}
 									<fieldset>
 					                    <div class='span3 box'>

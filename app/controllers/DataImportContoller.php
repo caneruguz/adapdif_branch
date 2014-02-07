@@ -44,6 +44,15 @@ class DataImportContoller extends BaseController {
 
 	public function save()
 	{
+		$rules = array('studentID' => 'required');
+
+	    $validator = Validator::make(Input::all(), $rules);
+
+	    if ($validator->fails())
+	    {
+	        return Redirect::to('upload2')->withErrors($validator);
+	    }
+
 		$data = unserialize( Session::get('data') );
 
 		$data->saveData( Input::get('studentID'), Input::get('included') );
