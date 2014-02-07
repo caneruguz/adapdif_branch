@@ -57,7 +57,7 @@ class DataImportContoller extends BaseController {
 
 		$data->saveData( Input::get('studentID'), Input::get('included') );
 
-		return Redirect::to('data3');
+		return View::make('data3')->withData($data->dataImport);
 	}
 
 	public function dataView($id)

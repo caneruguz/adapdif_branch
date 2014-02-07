@@ -35,10 +35,10 @@ Data Import
 					        </div>
 					        <div class='box-content box-double-padding'>
 								<p>
-									You completed the data import process. 
+									You completed the data import process.
 								</p>
 								<p>
-									<div class="btn btn-large btn-primary"> <i class='icon-file'></i> View this Data Set</div>
+									<div class="btn btn-large btn-primary"> <i class='icon-file'></i> <a href="{{ URL::to('dataview', $data->dataID)}}">View this Data Set</a></div>
 									<div class="btn btn-large btn-info"> <i class='icon-list'></i> View All Your Imports</div>
 									<div class="btn btn-large btn-success"> <i class='icon-plus'></i> Add Another Set</div>
 								</p>
@@ -47,7 +47,7 @@ Data Import
 
 	            </div>
 	        </div>
-		</div>  
+		</div>
     </div>
 
 
@@ -57,8 +57,8 @@ Data Import
 @stop
 @section('scripts')
 <script type="text/javascript">
-$(document).ready(function() { 
+$(document).ready(function() {
 
-}); 
+});
 </script>
 @stop
